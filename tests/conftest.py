@@ -1,6 +1,7 @@
 """
 Configuración de fixtures compartidas para testing
 """
+
 import pytest
 from app import create_app
 from app.models import task_repository

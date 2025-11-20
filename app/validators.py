@@ -1,6 +1,7 @@
 """
 Validadores de datos de entrada
 """
+
 from typing import Dict, Tuple
 
 

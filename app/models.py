@@ -1,6 +1,7 @@
 """
 Modelos de datos y lógica de negocio
 """
+
 from datetime import datetime
 from typing import Dict, List, Optional
 

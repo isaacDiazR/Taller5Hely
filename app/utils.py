@@ -1,6 +1,7 @@
 """
 Funciones auxiliares
 """
+
 from typing import List
 from app.models import Task
 

@@ -1,6 +1,7 @@
 """
 Rutas de la API REST
 """
+
 from flask import Blueprint, request, jsonify
 from app.models import Task, task_repository
 from app.validators import validate_task_data
