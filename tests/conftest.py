@@ -10,7 +10,7 @@ from app.models import task_repository
 def app():
     """Crea y configura una instancia de la app para testing"""
     app = create_app()
-    app.config['TESTING'] = True
+    app.config["TESTING"] = True
     yield app
 
 
@@ -38,9 +38,9 @@ def reset_repository():
 def sample_task_data():
     """Datos de ejemplo para crear una tarea"""
     return {
-        'title': 'Test Task',
-        'description': 'This is a test task',
-        'priority': 'high'
+        "title": "Test Task",
+        "description": "This is a test task",
+        "priority": "high",
     }
 
 
@@ -48,9 +48,9 @@ def sample_task_data():
 def multiple_tasks_data():
     """Múltiples tareas de ejemplo"""
     return [
-        {'title': 'Task 1', 'description': 'First task', 'priority': 'high'},
-        {'title': 'Task 2', 'description': 'Second task', 'priority': 'medium'},
-        {'title': 'Task 3', 'description': 'Third task', 'priority': 'low'},
-        {'title': 'Task 4', 'description': 'Fourth task', 'priority': 'high'},
-        {'title': 'Task 5', 'description': 'Fifth task', 'priority': 'medium'}
+        {"title": "Task 1", "description": "First task", "priority": "high"},
+        {"title": "Task 2", "description": "Second task", "priority": "medium"},
+        {"title": "Task 3", "description": "Third task", "priority": "low"},
+        {"title": "Task 4", "description": "Fourth task", "priority": "high"},
+        {"title": "Task 5", "description": "Fifth task", "priority": "medium"},
     ]
