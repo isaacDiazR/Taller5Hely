@@ -23,13 +23,19 @@ def create_app():
 
     app.register_blueprint(api_bp, url_prefix="/api")
 
+    # Obtener la ruta absoluta del directorio frontend
+    frontend_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "frontend")
+
     # Servir archivos estáticos del frontend
     @app.route("/")
     def index():
-        return send_from_directory("frontend", "index.html")
+        return send_from_directory(frontend_dir, "index.html")
 
     @app.route("/<path:path>")
     def static_files(path):
-        return send_from_directory("frontend", path)
+        # Evitar conflicto con rutas de API
+        if path.startswith("api/"):
+            return {"error": "Not found"}, 404
+        return send_from_directory(frontend_dir, path)
 
     return app
