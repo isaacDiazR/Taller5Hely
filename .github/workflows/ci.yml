@@ -139,10 +139,30 @@ jobs:
       run: |
         bandit -r app -ll || true
 
+  deploy:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    needs: [lint-and-format, test, coverage, docker, security]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    
+    steps:
+    - name: Deploy to server via SSH
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USER }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        script: |
+          cd ~/Taller5Hely
+          git pull origin main
+          docker compose down
+          docker compose up -d --build
+          echo "✅ Deployment completed successfully!"
+
   build-summary:
     name: Build Summary
     runs-on: ubuntu-latest
-    needs: [lint-and-format, test, coverage, docker, security]
+    needs: [lint-and-format, test, coverage, docker, security, deploy]
     if: always()
     
     steps:
@@ -158,3 +178,5 @@ jobs:
         echo "  - Code coverage (>80%)"
         echo "  - Docker build"
         echo "  - Security scan"
+        echo "  - Production deployment"
+
