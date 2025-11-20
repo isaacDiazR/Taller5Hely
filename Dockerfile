@@ -17,6 +17,7 @@ COPY --from=builder /root/.local /root/.local
 
 # Copy application code
 COPY app/ ./app/
+COPY frontend/ ./frontend/
 COPY run.py .
 
 # Make sure scripts in .local are usable

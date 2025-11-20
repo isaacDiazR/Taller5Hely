@@ -2,8 +2,9 @@
 Inicialización de la aplicación Flask
 """
 
-from flask import Flask
+from flask import Flask, send_from_directory
 from flask_cors import CORS
+import os
 
 
 def create_app():
@@ -21,5 +22,14 @@ def create_app():
     from app.routes import api_bp
 
     app.register_blueprint(api_bp, url_prefix="/api")
+
+    # Servir archivos estáticos del frontend
+    @app.route("/")
+    def index():
+        return send_from_directory("frontend", "index.html")
+
+    @app.route("/<path:path>")
+    def static_files(path):
+        return send_from_directory("frontend", path)
 
     return app
