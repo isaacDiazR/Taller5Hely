@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo API - Gestión de Tareas</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>📝 Gestión de Tareas</h1>
+            <div id="stats" class="stats">
+                <div class="stat-item">
+                    <span class="stat-value" id="total-tasks">0</span>
+                    <span class="stat-label">Total</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value" id="completed-tasks">0</span>
+                    <span class="stat-label">Completadas</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value" id="pending-tasks">0</span>
+                    <span class="stat-label">Pendientes</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Task Form -->
+        <section class="task-form-section">
+            <h2>Crear Nueva Tarea</h2>
+            <form id="task-form">
+                <div class="form-group">
+                    <label for="task-title">Título *</label>
+                    <input 
+                        type="text" 
+                        id="task-title" 
+                        name="title" 
+                        placeholder="Ej: Completar informe mensual"
+                        required
+                        maxlength="100"
+                    >
+                    <small>Máximo 100 caracteres</small>
+                </div>
+                
+                <div class="form-group">
+                    <label for="task-description">Descripción</label>
+                    <textarea 
+                        id="task-description" 
+                        name="description" 
+                        placeholder="Detalles adicionales de la tarea..."
+                        rows="3"
+                        maxlength="500"
+                    ></textarea>
+                    <small>Máximo 500 caracteres</small>
+                </div>
+                
+                <div class="form-group">
+                    <label for="task-priority">Prioridad</label>
+                    <select id="task-priority" name="priority">
+                        <option value="low">🟢 Baja</option>
+                        <option value="medium" selected>🟡 Media</option>
+                        <option value="high">🔴 Alta</option>
+                    </select>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">
+                        ➕ Crear Tarea
+                    </button>
+                    <button type="reset" class="btn btn-secondary">
+                        🔄 Limpiar
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Filters -->
+        <section class="filters-section">
+            <h2>Filtros</h2>
+            <div class="filters">
+                <div class="filter-group">
+                    <label for="filter-status">Estado:</label>
+                    <select id="filter-status">
+                        <option value="all">Todas</option>
+                        <option value="pending">Pendientes</option>
+                        <option value="completed">Completadas</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="filter-priority">Prioridad:</label>
+                    <select id="filter-priority">
+                        <option value="all">Todas</option>
+                        <option value="high">Alta</option>
+                        <option value="medium">Media</option>
+                        <option value="low">Baja</option>
+                    </select>
+                </div>
+                
+                <button id="btn-refresh" class="btn btn-secondary">
+                    🔄 Actualizar
+                </button>
+            </div>
+        </section>
+
+        <!-- Task List -->
+        <section class="task-list-section">
+            <h2>Tareas</h2>
+            <div id="task-list" class="task-list">
+                <p class="loading">Cargando tareas...</p>
+            </div>
+        </section>
+
+        <!-- Edit Modal -->
+        <div id="edit-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Editar Tarea</h2>
+                <form id="edit-form">
+                    <input type="hidden" id="edit-task-id">
+                    
+                    <div class="form-group">
+                        <label for="edit-task-title">Título *</label>
+                        <input 
+                            type="text" 
+                            id="edit-task-title" 
+                            required
+                            maxlength="100"
+                        >
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="edit-task-description">Descripción</label>
+                        <textarea 
+                            id="edit-task-description" 
+                            rows="3"
+                            maxlength="500"
+                        ></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="edit-task-priority">Prioridad</label>
+                        <select id="edit-task-priority">
+                            <option value="low">🟢 Baja</option>
+                            <option value="medium">🟡 Media</option>
+                            <option value="high">🔴 Alta</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="edit-task-completed">
+                            Marcar como completada
+                        </label>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">
+                            💾 Guardar Cambios
+                        </button>
+                        <button type="button" class="btn btn-secondary" id="btn-cancel-edit">
+                            ❌ Cancelar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>ToDo API - Taller de CI/CD &amp; Testing | 2025</p>
+        </footer>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

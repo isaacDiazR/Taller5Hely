@@ -1,0 +1,50 @@
+# Docker
+.dockerignore
+Dockerfile
+docker-compose.yml
+
+# Git
+.git
+.gitignore
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info
+dist
+build
+venv/
+env/
+.venv/
+
+# Testing
+.pytest_cache
+.coverage
+htmlcov/
+.tox/
+
+# IDEs
+.vscode
+.idea
+*.swp
+*.swo
+
+# Documentation
+*.md
+docs/
+
+# CI/CD
+.github/
+
+# Frontend (not needed in API container)
+frontend/
+
+# Tests (not needed in production)
+tests/
+pytest.ini
+.flake8
