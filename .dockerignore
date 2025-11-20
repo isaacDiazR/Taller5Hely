@@ -41,9 +41,6 @@ docs/
 # CI/CD
 .github/
 
-# Frontend (not needed in API container)
-frontend/
-
 # Tests (not needed in production)
 tests/
 pytest.ini
